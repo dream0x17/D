@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار اختيار متعدد</title>
+    <style>
+        /* تنسيق النص "By: Dream" في أعلى اليمين */
+        .author {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        const questions = [
+            {
+                question: "ما هو لون السماء؟",
+                options: ["أ. أزرق", "ب. أخضر", "ج. أحمر", "د. أبيض"],
+                correct: "أ. أزرق"
+            },
+            {
+                question: "أين يقع جبل إيفرست؟",
+                options: ["أ. في أمريكا", "ب. في نيبال", "ج. في مصر", "د. في كندا"],
+                correct: "ب. في نيبال"
+            },
+            {
+                question: "ما هو أكبر كوكب في المجموعة الشمسية؟",
+                options: ["أ. الأرض", "ب. المشتري", "ج. المريخ", "د. زحل"],
+                correct: "ب. المشتري"
+            },
+            {
+                question: "من هو مؤلف كتاب 1984؟",
+                options: ["أ. جورج أورويل", "ب. هاربر لي", "ج. مارك توين", "د. جين أوستن"],
+                correct: "أ. جورج أورويل"
+            },
+                   {
+                question: "ما هو لون السماء؟",
+                options: ["أ. أزرق", "ب. أخضر", "ج. أحمر", "د. أبيض"],
+                correct: "أ. أزرق"
+            },
+            {
+                question: "أين يقع جبل إيفرست؟",
+                options: ["أ. في أمريكا", "ب. في نيبال", "ج. في مصر", "د. في كندا"],
+                correct: "ب. في نيبال"
+            },
+            {
+                question: "ما هو أكبر كوكب في المجموعة الشمسية؟",
+                options: ["أ. الأرض", "ب. المشتري", "ج. المريخ", "د. زحل"],
+                correct: "ب. المشتري"
+            },
+            {
+                question: "من هو مؤلف كتاب 1984؟",
+                options: ["أ. جورج أورويل", "ب. هاربر لي", "ج. مارك توين", "د. جين أوستن"],
+                correct: "أ. جورج أورويل"
+            },
+                   {
+                question: "ما هو لون السماء؟",
+                options: ["أ. أزرق", "ب. أخضر", "ج. أحمر", "د. أبيض"],
+                correct: "أ. أزرق"
+            },
+            {
+                question: "أين يقع جبل إيفرست؟",
+                options: ["أ. في أمريكا", "ب. في نيبال", "ج. في مصر", "د. في كندا"],
+                correct: "ب. في نيبال"
+            },
+            {
+                question: "ما هو أكبر كوكب في المجموعة الشمسية؟",
+                options: ["أ. الأرض", "ب. المشتري", "ج. المريخ", "د. زحل"],
+                correct: "ب. المشتري"
+            },
+            {
+                question: "من هو مؤلف كتاب 1984؟",
+                options: ["أ. جورج أورويل", "ب. هاربر لي", "ج. مارك توين", "د. جين أوستن"],
+                correct: "أ. جورج أورويل"
+            },
+                   {
+                question: "ما هو لون السماء؟",
+                options: ["أ. أزرق", "ب. أخضر", "ج. أحمر", "د. أبيض"],
+                correct: "أ. أزرق"
+            },
+            {
+                question: "أين يقع جبل إيفرست؟",
+                options: ["أ. في أمريكا", "ب. في نيبال", "ج. في مصر", "د. في كندا"],
+                correct: "ب. في نيبال"
+            },
+            {
+                question: "ما هو أكبر كوكب في المجموعة الشمسية؟",
+                options: ["أ. الأرض", "ب. المشتري", "ج. المريخ", "د. زحل"],
+                correct: "ب. المشتري"
+            },
+            {
+                question: "من هو مؤلف كتاب 1984؟",
+                options: ["أ. جورج أورويل", "ب. هاربر لي", "ج. مارك توين", "د. جين أوستن"],
+                correct: "أ. جورج أورويل"
+            },
+        ];
+
+        function generateQuestions() {
+            let output = '';
+            for (let i = 0; i < questions.length; i++) {
+                output += `
+                    <div>
+                        <label for="q${i}">${questions[i].question}</label><br>
+                        ${questions[i].options.map((option, index) => `
+                            <input type="radio" id="q${i}${index}" name="q${i}" value="${option}">
+                            <label for="q${i}${index}">${option}</label><br>
+                        `).join('')}
+                    </div><br>
+                `;
+            }
+            document.getElementById('quiz').innerHTML = output;
+        }
+
+        function calculateResult() {
+            let score = 0;
+            for (let i = 0; i < questions.length; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selectedOption && selectedOption.value === questions[i].correct) {
+                    score++;
+                }
+            }
+            alert(`نتيجتك هي: ${score} من ${questions.length}`);
+        }
+
+        window.onload = generateQuestions;
+    </script>
+</head>
+<body>
+    <div class="author">By: Dream</div>
+    <h1>اختبار الاختيارات</h1>
+    <form onsubmit="event.preventDefault(); calculateResult();">
+        <div id="quiz"></div>
+        <input type="submit" value="إرسال">
+    </form>
+</body>
+</html>
